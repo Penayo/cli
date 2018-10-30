@@ -41,10 +41,10 @@
     "src/assets"
   ],
   "scripts": {
-    "build": "babel src -d lib && npm run build-bin && npm run build-assets",
-    "build-bin": "move ./lib/sequelize.js ./lib/sequelize",
-    "build-assets": "xcopy /E ./src/assets ./lib/",
-    "build-clean": "rd /S /Q ./lib/",
+    "build": "npm run build-clean && babel src -d lib && npm run build-bin && npm run build-assets",
+    "build-bin": "mv ./lib/sequelize.js ./lib/sequelize && chmod +x ./lib/sequelize",
+    "build-assets": "cp -R ./src/assets ./lib/",
+    "build-clean": "rm -rf ./lib/",
     "lint": "eslint test src",
     "test-raw": "mocha $npm_package_options_mocha 'test/**/*.test.js'",
     "test": "npm run lint && npm run build && npm run test-raw"

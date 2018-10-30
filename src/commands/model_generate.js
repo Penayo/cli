@@ -50,6 +50,11 @@ exports.handler = function (args) {
     clc.blueBright(helpers.path.getMigrationPath(args.name)),
     '.'
   );
+  helpers.view.log(
+    'New route was created at',
+    clc.blueBright(helpers.path.getRoutePath(args.name)),
+    '.'
+  );
 
   process.exit(0);
 };
