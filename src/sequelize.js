@@ -26,6 +26,7 @@ import seed from './commands/seed';
 import seedOne from './commands/seed_one';
 import migrationGenerate from './commands/migration_generate';
 import modelGenerate from './commands/model_generate';
+import routeGenerate from './commands/route_generate';
 import seedGenerate from './commands/seed_generate';
 import database from './commands/database';
 

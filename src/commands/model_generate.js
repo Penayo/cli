@@ -39,6 +39,7 @@ exports.handler = function (args) {
   }
 
   helpers.migration.generateTableCreationFile(args);
+  helpers.route.generateRouteCreationFile(args);
   helpers.view.log(
     'New model was created at',
     clc.blueBright(helpers.path.getModelPath(args.name)),

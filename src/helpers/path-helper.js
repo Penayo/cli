@@ -73,6 +73,18 @@ module.exports = {
     );
   },
 
+  getRoutesPath (routeName) {
+    return args.routesPath || path.resolve(process.cwd(), 'routes');
+  },
+
+  getRoutePath (routeName) {
+    return path.resolve(
+      this.getRoutesPath(),
+      this.addFileExtension(routeName)
+    );
+  },
+
+
   resolve (packageName) {
     let result;
 
