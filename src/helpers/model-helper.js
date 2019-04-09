@@ -8,7 +8,8 @@ const validAttributeFunctionType = ['array', 'enum'];
  * @param {string} dataType
  */
 function validateDataType (dataType) {
-  if (!Sequelize.DataTypes[dataType.toUpperCase()]) {
+  console.log('Datatype', dataType)
+  if (!Sequelize.DataTypes[dataType.toUpperCase()] || dataType[0] !== '{') {
     throw new Error(`Unknown type '${dataType}'`);
   }
 
@@ -16,11 +17,11 @@ function validateDataType (dataType) {
 }
 
 function formatAttributes (attribute) {
-  let result;
-  const split = attribute.split(':');
+  let result ;
+  const split = attribute.split(':') ;
 
   if (split.length === 2) {
-    result = { fieldName: split[0], dataType: split[1], dataFunction: null, dataValues: null };
+    result = { fieldName: split[0], dataType: split[1], dataFunction: null, dataValues: null } ;
   } else if (split.length === 3) {
     const validValues = /^\{(,? ?[A-z0-9 ]+)+\}$/;
     const isValidFunction = validAttributeFunctionType.indexOf(split[1].toLowerCase()) !== -1;
@@ -36,7 +37,7 @@ function formatAttributes (attribute) {
     }
   }
 
-  return result;
+  return result ;
 }
 
 module.exports = {

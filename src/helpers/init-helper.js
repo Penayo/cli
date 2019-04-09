@@ -47,6 +47,10 @@ const init = {
     createFolder('models', helpers.path.getModelsPath(), force);
   },
 
+  createRoutesFolder: force => {
+    createFolder('routes', helpers.path.getRoutesPath(), force);
+  },
+
   createModelsIndexFile: force => {
     const modelsPath = helpers.path.getModelsPath();
     const indexPath  = path.resolve(

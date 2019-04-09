@@ -13,9 +13,22 @@ module.exports = {
 
         <% attributes.forEach(function(attribute) { %>
           <%= attribute.fieldName %>: {
-            type: Sequelize.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(Sequelize.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
+            <% if (attribute.dataType[0].toUpperCase() == attribute.dataType[0]) { %>
+              type: Sequelize.INTEGER,
+              references: {
+                model: '<%= attribute.dataType %>',
+                key: 'id'
+              }
+            <% } else { %>
+              type: Sequelize.<%= attribute.dataFunction ? `${attribute.dataFunction.toUpperCase()}(Sequelize.${attribute.dataType.toUpperCase()})` : attribute.dataValues ? `${attribute.dataType.toUpperCase()}(${attribute.dataValues})` : attribute.dataType.toUpperCase() %>
+            <% } %>
           },
         <% }) %>
+
+        <%= createdAt %>: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
 
         <%= createdAt %>: {
           allowNull: false,
